@@ -1,0 +1,105 @@
+# Create Node class
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+# Create Binary Search Tree class
+class BST:
+    def __init__(self):
+        self.root = None
+
+    # Insert a node
+    def insert(self, data):
+        new_node = Node(data)
+
+        if self.root is None:
+            self.root = new_node
+            return
+
+        temp = self.root
+
+        while True:
+            if data < temp.data:
+                if temp.left is None:
+                    temp.left = new_node
+                    break
+                temp = temp.left
+
+            else:
+                if temp.right is None:
+                    temp.right = new_node
+                    break
+                temp = temp.right
+
+    # Non-Recursive Inorder Traversal
+    def inorder(self):
+        stack = []
+        temp = self.root
+
+        while temp is not None or len(stack) > 0:
+
+            while temp is not None:
+                stack.append(temp)
+                temp = temp.left
+
+            temp = stack.pop()
+            print(temp.data, end=" ")
+
+            temp = temp.right
+
+    # Non-Recursive Preorder Traversal
+    def preorder(self):
+        if self.root is None:
+            print("Tree is Empty")
+            return
+
+        stack = [self.root]
+
+        while len(stack) > 0:
+            temp = stack.pop()
+            print(temp.data, end=" ")
+
+            if temp.right is not None:
+                stack.append(temp.right)
+
+            if temp.left is not None:
+                stack.append(temp.left)
+
+
+# Main Program
+bst = BST()
+
+while True:
+    print("\n--- Student Admission Records ---")
+    print("1. Insert Roll Number")
+    print("2. Inorder Traversal")
+    print("3. Preorder Traversal")
+    print("4. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        roll = int(input("Enter Student Roll Number: "))
+        bst.insert(roll)
+        print("Record inserted successfully.")
+
+    elif choice == 2:
+        print("Inorder Traversal:")
+        bst.inorder()
+        print()
+
+    elif choice == 3:
+        print("Preorder Traversal:")
+        bst.preorder()
+        print()
+
+    elif choice == 4:
+        print("Program Ended")
+        break
+
+    else:
+        print("Invalid Choice")
+

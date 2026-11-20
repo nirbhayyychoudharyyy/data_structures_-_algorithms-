@@ -1,0 +1,75 @@
+# Create Node class
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+# Create Binary Tree class
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+
+    # Inorder: Left, Root, Right
+    def inorder(self, node):
+        if node:
+            self.inorder(node.left)
+            print(node.data, end=" ")
+            self.inorder(node.right)
+
+    # Preorder: Root, Left, Right
+    def preorder(self, node):
+        if node:
+            print(node.data, end=" ")
+            self.preorder(node.left)
+            self.preorder(node.right)
+
+    # Postorder: Left, Right, Root
+    def postorder(self, node):
+        if node:
+            self.postorder(node.left)
+            self.postorder(node.right)
+            print(node.data, end=" ")
+
+
+# Main Program
+bt = BinaryTree()
+
+# Create Binary Tree
+bt.root = Node(101)
+bt.root.left = Node(102)
+bt.root.right = Node(103)
+bt.root.left.left = Node(104)
+bt.root.left.right = Node(105)
+
+while True:
+    print("\n--- Library Catalog ---")
+    print("1. Inorder Traversal")
+    print("2. Preorder Traversal")
+    print("3. Postorder Traversal")
+    print("4. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        print("Inorder Traversal:")
+        bt.inorder(bt.root)
+        print()
+
+    elif choice == 2:
+        print("Preorder Traversal:")
+        bt.preorder(bt.root)
+        print()
+
+    elif choice == 3:
+        print("Postorder Traversal:")
+        bt.postorder(bt.root)
+        print()
+
+    elif choice == 4:
+        print("Program Ended")
+        break
+
+    else:
+        print("Invalid Choice")

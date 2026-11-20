@@ -1,0 +1,74 @@
+# Create Graph using Adjacency List
+
+class Graph:
+    def __init__(self, vertices):
+        self.vertices = vertices
+        self.adj = {}
+
+        for i in range(vertices):
+            self.adj[i] = []
+
+    # Add Friendship
+    def add_edge(self, u, v):
+        self.adj[u].append(v)
+        self.adj[v].append(u)
+
+    # Display Adjacency List
+    def display(self):
+        print("Adjacency List:")
+        for i in self.adj:
+            print(i, ":", self.adj[i])
+
+    # BFS Traversal
+    def bfs(self, start):
+        visited = [False] * self.vertices
+        queue = []
+
+        visited[start] = True
+        queue.append(start)
+
+        while len(queue) > 0:
+            vertex = queue.pop(0)
+            print(vertex, end=" ")
+
+            for neighbour in self.adj[vertex]:
+                if not visited[neighbour]:
+                    visited[neighbour] = True
+                    queue.append(neighbour)
+
+
+# Main Program
+n = int(input("Enter number of users: "))
+
+g = Graph(n)
+
+while True:
+    print("\n--- Social Network ---")
+    print("1. Add Friendship")
+    print("2. Display Adjacency List")
+    print("3. Perform BFS")
+    print("4. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        u = int(input("Enter first user: "))
+        v = int(input("Enter second user: "))
+        g.add_edge(u, v)
+        print("Friendship added successfully.")
+
+    elif choice == 2:
+        g.display()
+
+    elif choice == 3:
+        start = int(input("Enter starting user: "))
+        print("BFS Traversal:")
+        g.bfs(start)
+        print()
+
+    elif choice == 4:
+        print("Program Ended")
+        break
+
+    else:
+        print("Invalid Choice")

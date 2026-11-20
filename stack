@@ -1,0 +1,52 @@
+stack = []
+
+def push():
+    book = input("Enter book name: ")
+    stack.append(book)
+    print(book, "added to stack.")
+
+def pop():
+    if len(stack) == 0:
+        print("Stack is empty!")
+    else:
+        book = stack.pop()
+        print(book, "is arranged on the shelf.")
+
+def peek():
+    if len(stack) == 0:
+        print("Stack is empty!")
+    else:
+        print("Top book:", stack[-1])
+
+def display():
+    if len(stack) == 0:
+        print("Stack is empty!")
+    else:
+        print("Returned books in stack:")
+        for book in reversed(stack):
+            print(book)
+
+
+while True:
+    print("\n--- Library Book Stack ---")
+    print("1. Return Book (Push)")
+    print("2. Arrange Book (Pop)")
+    print("3. Top Book (Peek)")
+    print("4. Display Stack")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        push()
+    elif choice == 2:
+        pop()
+    elif choice == 3:
+        peek()
+    elif choice == 4:
+        display()
+    elif choice == 5:
+        print("Exiting program.")
+        break
+    else:
+        print("Invalid choice!")
